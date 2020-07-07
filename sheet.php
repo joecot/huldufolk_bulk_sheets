@@ -1,12 +1,23 @@
 <?php
+//See README.md
+
 require './vendor/autoload.php';
 use mikehaertl\pdftk\Pdf;
+// You'll need to get API credentials from a google API project
+// https://developers.google.com/drive/activity/v1/guides/project
+// set the path to your credentials file here
 $auth_config_path = '/home/joe/Downloads/client_id.json';
+// The ID of your google spreadsheet. Sample sheet here (make a copy):
+// https://docs.google.com/spreadsheets/d/1wAOwIZC3uUGFOvvAN7VFBCT_k1VgcPlcG-Nd0HbqU00/edit
+// The ID for that sheet is here, but will fail writing as you won't have write access
+$spreadsheetId = '1wAOwIZC3uUGFOvvAN7VFBCT_k1VgcPlcG-Nd0HbqU00';
+//create a directory for destination PDFs
+$pdfdir = 'PDFs';
+//Acrobat reader form of the character sheet
+$formpdf = 'huldufolk_form.pdf';
+
 $client = getGoogleClient($auth_config_path);
 $googleSheetsService = new Google_Service_Sheets($client);
-$spreadsheetId = '1p1D-lajKVf0JileDWoDgwcY-HDM50zmBtwtBX5_RUFw';
-$pdfdir = 'PDFs_PAX';
-$formpdf = 'Huldufolkacrformpax2.pdf';
 
 $characters = getCharacters();
 $crews = getCrews();
