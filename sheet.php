@@ -27,7 +27,7 @@ foreach($characters as $character){
 		print_r($character);
 		if(empty($character['Code']) || empty($character['CrewCode']) || empty($character['Quality1'])) continue;
 		print_r($character);
-        generateCharacter($character);
+		generateCharacter($character);
 }
 
 
@@ -145,9 +145,9 @@ function generateCharacter($character){
 	$customQualities = 0;
 	for($i = 1; $i<=3; $i++){
 		if(!empty($character['Quality'.$i])){
-            $customQualities++;
-            $formFields['Qualities_Custom'.$customQualities] = 'Yes';
-            $formFields['Qualities_Text_Custom'.$customQualities] = $character['Quality'.$i];
+			$customQualities++;
+			$formFields['Qualities_Custom'.$customQualities] = 'Yes';
+			$formFields['Qualities_Text_Custom'.$customQualities] = $character['Quality'.$i];
 		}
 	}
 	$customAffinities = 0;
@@ -155,9 +155,9 @@ function generateCharacter($character){
 		if($i<=2) $field = 'FocusedAffinity';
 		else $field = 'Affinity';
 		if(empty($character[$field.$i])) continue;  
-        $customAffinities++;
-        $formFields['Affinities_Custom'.$customAffinities] = $character[$field.$i];
-        if($i<=2) $formFields['Affinities_Focus_Custom'.$customAffinities] = 'Yes';
+		$customAffinities++;
+		$formFields['Affinities_Custom'.$customAffinities] = $character[$field.$i];
+		if($i<=2) $formFields['Affinities_Focus_Custom'.$customAffinities] = 'Yes';
 	}
 	if(!empty($character['Belief_Rank'])&& ctype_digit((string)$character['Belief_Rank']) && $character['Belief_Rank'] < 6){
 		for($belieflevel = 1; $belieflevel <= $character['Belief_Rank']; $belieflevel++){
